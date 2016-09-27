@@ -2,11 +2,14 @@
   "name": "redux-voting-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://juhovuo.github.io/redux-voting-client",
   "devDependencies": {
-    "react-scripts": "0.4.3"
+    "react-scripts": "0.6.0"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "react": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2"
   },
   "scripts": {
