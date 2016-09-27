@@ -19,7 +19,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Voting pair={pair} vote={() => {}} hasVoted="Trainspotting"/>
+        <Voting pair={pair} vote={() => {}} hasVoted="Trainspotting" winner="Trainspotting"/>
       </div>
     )
   }
