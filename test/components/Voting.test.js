@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Voting from '../../src/components/Voting';
 import TestUtils from 'react-addons-test-utils';
+import {List} from 'immutable';
+
 
 describe('Voting', () => {
 
 	it('renders a pair of button', () => {
 		const component = TestUtils.renderIntoDocument(
-			<Voting pair={["Trainspotting", "28 Days Later"]}/>
+			<Voting pair={['Trainspotting', '28 Days Later']}/>
 		);
 		const buttons = TestUtils.scryRenderedDOMComponentsWithTag(component, 'button');
 
@@ -63,5 +65,47 @@ describe('Voting', () => {
 		const winner = ReactDOM.findDOMNode(component.refs.winner);
 		expect(winner).toBeDefined();
 		expect(winner.textContent).toContain('Trainspotting');
+	});
+
+	it('renders a pure component', () => {
+		const pair = ['Trainspotting', '28 Days Later'];
+		const container = document.createElement('div');
+		let component = ReactDOM.render(
+			<Voting pair={pair} />,
+			container
+			);
+
+		let firstButton = TestUtils.scryRenderedDOMComponentsWithTag(component, 'button')[0];
+		expect(firstButton.textContent).toEqual('Trainspotting');
+
+		pair[0] = 'Sunshine';
+		component = ReactDOM.render(
+			<Voting pair={pair} />, container
+		);
+
+		firstButton = TestUtils.scryRenderedDOMComponentsWithTag(component, 'button')[0];
+
+		// Our component is supposed to be pure, so if we give it a mutable array
+		// and then caused a mutation inside the array, it should not be re-rendered
+		expect(firstButton.textContent).toEqual('Trainspotting');		
+	});
+
+	it('does update DOM when a prop changes', () => {
+		// Immutable list
+		const pair = List.of('Trainspotting', '28 Days Later');
+		const container = document.createElement('div');
+		let component = ReactDOM.render(<Voting pair={pair}/>, container);
+
+		let firstButton = TestUtils.scryRenderedDOMComponentsWithTag(component, 'button')[0];
+		expect(firstButton.textContent).toEqual('Trainspotting');
+
+		const newPair = pair.set(0, 'Sunshine');
+		component = ReactDOM.render(
+			<Voting pair={newPair} />,
+			container
+			);
+
+		firstButton = TestUtils.scryRenderedDOMComponentsWithTag(component, 'button')[0];
+		expect(firstButton.textContent).toEqual('Sunshine');
 	});
 });

@@ -6,6 +6,3 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
 });
-
-// With immutable add:
-// jest.unmock('immutable')
