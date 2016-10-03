@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { List, Map } from 'immutable';
+//import logo from './logo.svg';
 import './App.css';
 
-import Voting from './components/Voting';
-
-const pair = ['Trainspotting', '28 Days Later'];
+const pair = List.of('Trainspotting', '28 Days Later');
+const tally = Map({'Trainspotting': 5, '28 Days Later': 4});
 
 class App extends Component {
 
 	render() {
+		return React.cloneElement(this.props.children, {
+			pair: pair,
+			tally: tally
+		});
+
+/*
 		return (
 			<div className="App">
 				<div className="App-header">
@@ -22,7 +28,12 @@ class App extends Component {
 				<Voting pair={pair} vote={() => {}} hasVoted="Trainspotting" winner="Trainspotting"/>
 			</div>
 		)
+*/
 	}
+}
+
+App.propTypes = {
+	children: React.propTypes.array
 }
 
 export default App;

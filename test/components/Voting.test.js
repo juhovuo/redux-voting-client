@@ -4,7 +4,6 @@ import Voting from '../../src/components/Voting';
 import TestUtils from 'react-addons-test-utils';
 import {List} from 'immutable';
 
-
 describe('Voting', () => {
 
 	it('renders a pair of button', () => {
