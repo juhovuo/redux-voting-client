@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 import Winner from './Winner';
 import Vote from './Vote';
 
-class Voting extends Component {
+export class Voting extends Component {
 
 	constructor(props) {
 		super(props);
@@ -22,10 +24,15 @@ class Voting extends Component {
 }
 
 Voting.propTypes = {
-	pair: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object]),
-	vote: React.PropTypes.func,
-	hasVoted: React.PropTypes.string,
-	winner: React.PropTypes.string
+	pair: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+	vote: PropTypes.func,
+	hasVoted: PropTypes.string,
+	winner: PropTypes.string
 }
 
-export default Voting;
+const mapStateToProps = (state) => ({
+	pair: state.getIn(['vote', 'pair']),
+	winner: state.get('winner')
+});
+
+export default connect(mapStateToProps)(Voting);

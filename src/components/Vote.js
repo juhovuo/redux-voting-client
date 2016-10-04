@@ -35,8 +35,7 @@ class Vote extends Component {
 Vote.propTypes = {
 	pair: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object]),
 	vote : React.PropTypes.func,
-	hasVoted: React.PropTypes.string,
-	winner: React.PropTypes.string
+	hasVoted: React.PropTypes.string
 }
 
 export default Vote;

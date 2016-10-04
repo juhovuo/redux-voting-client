@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Voting from '../../src/components/Voting';
+import {Voting} from '../../src/components/Voting';
 import TestUtils from 'react-addons-test-utils';
 import {List} from 'immutable';
 
