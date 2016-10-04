@@ -18,7 +18,7 @@ describe('reducer', () => {
 		};
 
 		const nextState = reducer(initialState, action);
-		
+
 		expect(nextState).toEqual(fromJS({
 			vote: {
 				pair: ['Trainspotting', '28 Days Later'],

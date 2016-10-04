@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory} from 'react-router';
 import configureStore from './configure-store';
 import {Provider} from 'react-redux';
+import io from 'socket.io-client';
 import { Map } from 'immutable';
 
 import App from './App';
@@ -14,6 +15,7 @@ import './index.css';
 
 const store = configureStore(Map());
 
+/*
 store.dispatch({
 	type: SET_STATE,
 	state: {
@@ -23,6 +25,12 @@ store.dispatch({
 		}
 	}
 });
+*/
+
+const socket = io(`${location.protocol}//${location.hostname}:8090`);
+socket.on('state', state =>
+	store.dispatch({type: SET_STATE, state})
+);
 
 const routes = <Route component={App}>
 	<Route path="/results" component={Results} />
