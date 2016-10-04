@@ -1,5 +1,5 @@
-import { Map } from 'immutable';
-import { SET_STATE } from './actions/actionTypes';
+import { List, Map } from 'immutable';
+import { SET_STATE, VOTE } from './actions/types';
 
 const initialState = Map();
 
@@ -7,11 +7,32 @@ function setState(state, newState) {
 	return state.merge(newState);
 }
 
+function vote(state, entry) {
+	const currentPair = state.getIn(['vote', 'pair']);
+	if(currentPair && currentPair.includes(entry)) {
+		return state.set('hasVoted', entry);
+	} else {
+		return state;
+	}
+}
+
+function resetVote(state) {
+	const hasVoted = state.get('hasVoted');
+	const currentPair = state.getIn(['vote', 'pair'], List());
+	if (hasVoted && !currentPair.includes(hasVoted)) {
+		return state.remove('hasVoted');
+	} else {
+		return state;
+	}
+}
+
 export default function(state = initialState, action) {
 
 	switch(action.type) {
 		case SET_STATE:
-			return setState(state, action.state);
+			return resetVote(setState(state, action.state));
+		case VOTE:
+			return vote(state, action.entry);
 		default:
 			return state;
 	}

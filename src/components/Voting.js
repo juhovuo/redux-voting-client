@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-
 import Winner from './Winner';
 import Vote from './Vote';
+import * as actionCreators from '../actions/creators';
 
 export class Voting extends Component {
 
@@ -32,7 +32,8 @@ Voting.propTypes = {
 
 const mapStateToProps = (state) => ({
 	pair: state.getIn(['vote', 'pair']),
+	hasVoted: state.get('hasVoted'),
 	winner: state.get('winner')
 });
 
-export default connect(mapStateToProps)(Voting);
+export default connect(mapStateToProps, actionCreators)(Voting);
