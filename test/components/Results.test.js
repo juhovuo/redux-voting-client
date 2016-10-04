@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Results from '../../src/components/Results';
+import { Results } from '../../src/components/Results';
 import TestUtils from 'react-addons-test-utils';
-import { List,Map } from 'immutable';
+import { List, Map } from 'immutable';
 
 describe('Results', () => {
 
