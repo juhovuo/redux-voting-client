@@ -1,15 +1,17 @@
-import { SET_STATE, VOTE } from './types';
+import { SET_STATE, VOTE, NEXT } from './types';
 
-export const setState = (state) => {
-	return {
-		type: SET_STATE,
-		state
-	}
-}
+export const setState = (state) => ({
+	type: SET_STATE,
+	state
+});
 
-export const vote = (entry) => {
-	return {
-		type: VOTE,
-		entry
-	}
-}
+export const vote = (entry) => ({
+	meta: {remote: true},
+	type: VOTE,
+	entry
+});
+
+export const next = () => ({
+	meta: {remote: true},
+	type: NEXT
+});

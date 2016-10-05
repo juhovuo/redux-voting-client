@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Winner from './Winner';
+import * as actionCreators from '../actions/creators';
 
 export class Results extends Component {
 
@@ -57,4 +58,7 @@ const mapStateToProps = (state) => ({
 	winner: state.get('winner')
 });
 
-export default connect(mapStateToProps)(Results);
+export default connect(
+	mapStateToProps,
+	actionCreators
+)(Results);
