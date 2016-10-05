@@ -8,8 +8,7 @@
     "eslint": "^3.7.0",
     "eslint-plugin-react": "^6.3.0",
     "react-scripts": "0.6.0",
-    "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0"
+    "redux-logger": "^2.6.1"
   },
   "dependencies": {
     "immutable": "^3.8.1",
